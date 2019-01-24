@@ -1,5 +1,5 @@
 # bitcoin-rpc-api
-A A modern full-featured Bitcoin Core REST and RPC Express middleware to execute administrative tasks, [multiwallet](https://bitcoincore.org/en/2017/09/01/release-0.15.0/#multiwallet) operations and queries about network and the blockchain using URL structure exposed for easy interfacing with a bitcoind Bitcoin wallet..
+A modern full-featured Bitcoin Core REST and RPC Express middleware to execute administrative tasks, [multiwallet](https://bitcoincore.org/en/2017/09/01/release-0.15.0/#multiwallet) operations and queries about network and the blockchain using URL structure exposed for easy interfacing with a bitcoind Bitcoin wallet..
 
 ## Status
 To Be Updated
@@ -41,7 +41,6 @@ NB: The middleware is experimental at present. Certain JSON-RPC methods are not 
 These methods will be added in the future. If there any other problems with the other methods, please report the bugs.
 
 ##### Example of a setup
-
 
 ```javascript
 var bitcoinapi = require('bitcoin-rpc-api');
