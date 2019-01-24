@@ -2,7 +2,8 @@
 A modern full-featured Bitcoin Core REST and RPC Express middleware to execute administrative tasks, [multiwallet](https://bitcoincore.org/en/2017/09/01/release-0.15.0/#multiwallet) operations and queries about network and the blockchain using URL structure exposed for easy interfacing with a bitcoind Bitcoin wallet..
 
 ## Status
-To Be Updated
+[![NPM Package](https://img.shields.io/badge/npm-0.1.0-orange.svg)](https://www.npmjs.org/package/dibyanshu)
+[![Build Status](https://img.shields.io/badge/build-failed-red.svg)](https://github.com/dibyanshusinha/)
 
 ## Installation
 
