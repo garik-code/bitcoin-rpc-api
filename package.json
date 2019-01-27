@@ -32,5 +32,6 @@
   "bugs": {
     "url": "https://github.com/dibyanshusinha/bitcoin-rpc-api/issues"
   },
-  "homepage": "https://github.com/dibyanshusinha/bitcoin-rpc-api#readme"
+  "homepage": "https://github.com/dibyanshusinha/bitcoin-rpc-api#readme",
+  "dependencies": {}
 }

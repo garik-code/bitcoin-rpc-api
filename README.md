@@ -7,14 +7,6 @@ A modern full-featured Bitcoin Core REST and RPC Express middleware to execute a
 
 ## Installation
 
-Install the package via `yarn`:
-
-```sh
-yarn add bitcoin-rpc-api
-```
-
-or via `npm`:
-
 Install the package via `npm`:
 
 ```sh
