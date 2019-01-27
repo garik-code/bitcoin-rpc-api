@@ -1,15 +1,12 @@
 {
   "name": "bitcoin-rpc-api",
-  "version": "0.0.2",
-  "description": "A modern full-featured Bitcoin Core REST and RPC Express middleware to execute administrative tasks, multiwallet operations and queries about network and the blockchain using URL structure exposed for easy interfacing with a bitcoind Bitcoin wallet.",
+  "version": "0.0.4",
+  "description": "A promise based modern full-featured Bitcoin Core REST and RPC Express middleware to execute administrative tasks, multiwallet operations and queries about network and the blockchain using URL structure exposed for easy interfacing with a bitcoind Bitcoin wallet.",
   "main": "index.js",
   "files": [
-    "lib",
+    "lib/util.js",
     "index.js"
   ],
-  "scripts": {
-    "test": "mocha"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dibyanshusinha/bitcoin-rpc-api.git"

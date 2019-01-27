@@ -2,7 +2,7 @@
 A modern full-featured Bitcoin Core REST and RPC Express middleware to execute administrative tasks, [multiwallet](https://bitcoincore.org/en/2017/09/01/release-0.15.0/#multiwallet) operations and queries about network and the blockchain using URL structure exposed for easy interfacing with a bitcoind Bitcoin wallet..
 
 ## Status
-[![NPM Package](https://img.shields.io/badge/npm-0.0.2-green.svg)](https://www.npmjs.org/package/dibyanshu)
+[![NPM Package](https://img.shields.io/badge/npm-0.0.4-green.svg)](https://www.npmjs.org/package/dibyanshu)
 [![Build Status](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/dibyanshusinha/)
 
 ## Installation
@@ -25,13 +25,13 @@ npm install bitcoin-rpc-api --save
 ##### Example of a setup
 
 ```javascript
-var bitcoinapi = require('bitcoin-rpc-api');
+var bitcoin = require('bitcoin-rpc-api');
 var express = require('express');
 var app = express();
 
 //Username and password relate to those set in the bitcoin.conf file
 
-var wallet = {
+var node = {
   protocol: 'http',
   host: 'localhost',
   port: 8332,
@@ -39,8 +39,8 @@ var wallet = {
   pass: 'password'
 };
 
-bitcoinapi.setWalletDetails(wallet);
-app.use('/bitcoin', bitcoinapi.app); //Bind the middleware to any chosen url
+bitcoin.setup(node);
+app.use('/bitcoin', bitcoin.api); //Bind the middleware to any chosen url
 
 app.listen(3000);
 ```
@@ -113,9 +113,9 @@ Consult the [API list](https://bitcoin.org/en/developer-reference#remote-procedu
 
 If you have encrypted your wallet.dat you need to set the passphrase before attaching the middleware.
 ```javascript
-bitcoinapi.setWalletDetails(wallet);
-bitcoinapi.setWalletPassphrase(passphrase);
-app.use('/bitcoin/api', bitcoinapi.app);
+bitcoin.setup(wallet);
+bitcoin.setWalletPassphrase(passphrase);
+app.use('/bitcoin/api', bitcoin.api);
 ```
 
 ### .setAccces(type, accesslist);
@@ -128,7 +128,7 @@ The 'allow' type only exposes the methods given by an array of methods as the ac
 
 ```javascript
 //Allow only the getblockchaininfo method
-bitcoinapi.setAccess('allow', ['getblockchaininfo']);
+bitcoin.setAccess('allow', ['getblockchaininfo']);
 ```
 
 #### 'restrict'
@@ -136,7 +136,7 @@ bitcoinapi.setAccess('allow', ['getblockchaininfo']);
 The 'restrict' type prevents methods from being accessed.
 
 ```javascript
-bitcoinapi.setAccess('restrict', ['dumpprivkey', 'sendmany']);
+bitcoin.setAccess('restrict', ['dumpprivkey', 'sendmany']);
 ```
 
 ### Access Profiles
@@ -148,7 +148,7 @@ Bitcoin-RPC-Api has predefined access profiles to make it easy to set up.
 It prevents 'dumpprivkey' and 'walletpassphrasechange' being accessed. This prevents potential theft. Also removes the 'stop' command to prevent someone from stopping the server.
 
 ```javascript
-bitcoinapi.setAccess('default-safe');
+bitcoin.setAccess('default-safe');
 ```
 
 #### 'read-only'
@@ -156,7 +156,7 @@ bitcoinapi.setAccess('default-safe');
 This profile only exposes methods that show information. No methods that can send/alter the wallet are exposed.
 
 ```javascript
-bitcoinapi.setAccess('read-only');
+bitcoin.setAccess('read-only');
 ```
 
 ## Projects
