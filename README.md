@@ -2,7 +2,7 @@
 A modern full-featured Bitcoin Core REST and RPC Express middleware to execute administrative tasks, [multiwallet](https://bitcoincore.org/en/2017/09/01/release-0.15.0/#multiwallet) operations and queries about network and the blockchain using URL structure exposed for easy interfacing with a bitcoind Bitcoin wallet..
 
 ## Status
-[![NPM Package](https://img.shields.io/badge/npm-0.0.4-green.svg)](https://www.npmjs.org/package/dibyanshu)
+[![NPM Package](https://img.shields.io/badge/npm-0.0.5-green.svg)](https://www.npmjs.org/package/dibyanshu)
 [![Build Status](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/dibyanshusinha/)
 
 ## Installation
@@ -15,9 +15,6 @@ npm install bitcoin-rpc-api --save
 
 
 ## Usage
-### Client(...args)
-#### Params
-
 
 ### Examples
 #### Using Node.js
@@ -55,7 +52,8 @@ For example:
 
 * http://localhost:5000/bitcoin/api/getblockchaininfo
 
-This returns data exactly as would be expected from the JSON-RPC api.
+This will return data as expected from bitcoin-cli
+
 
 ```javascript
 {
@@ -70,31 +68,11 @@ This returns data exactly as would be expected from the JSON-RPC api.
   "chainwork": "",
   "size_on_disk": 548902880,
   "pruned": true,
-  "pruneheight": 558925,
-  "automatic_pruning": true,
   "prune_target_size": 576716800,
-  "softforks": [
-    {
-      "id": "bip34",
-      "version": 2,
-      "reject": {
-        "status": true
-      }
-    }
-  ],
+  "softforks": [ ... ],
   "bip9_softforks": {
-    "csv": {
-      "status": "active",
-      "startTime": 1462060800,
-      "timeout": 1493596800,
-      "since": 419328
-    },
-    "segwit": {
-      "status": "active",
-      "startTime": 1479168000,
-      "timeout": 1510704000,
-      "since": 481824
-    }
+    "csv": { ... },
+    "segwit": { ... }
   },
   "warnings": ""
 }
@@ -104,60 +82,48 @@ This returns data exactly as would be expected from the JSON-RPC api.
 
 Parameters should be sent via a query string:
 
+### Client(...args)
+#### Params
+
+The command ```sh  bitcoin-cli validateaddress "1PSSGeFHDnKNxiEyFrD1wcEaHr9hrQDDWc"  ```
+can be converted as 
+
+* http://localhost:5000/bitcoin/validateaddress?address=addresseBL2HJWttdztptRvf1wm
+
+This will return in similar faishon. 
+
+```javascript
+  { 
+    "result": {
+      "isvalid": true,
+      "address": "1N2xxpqDDPb1wm",
+      "scriptPubKey": "76a914e6b9c5ba5d75088ac",
+      "ismine": false,
+      "iswatchonly": false,
+      "isscript": false,
+      "iswitness": false
+    },
+    "error": null,
+    "id": null
+  }
+  
+```
+
 Consult the [API list](https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs) for parameter information.
 
 
-## Access Control
+## More APIs with complex params coming soon...
 
-### .setWalletPassphrase(passphrase);
 
-If you have encrypted your wallet.dat you need to set the passphrase before attaching the middleware.
+### .walletPass(passphrase);
+
+If your wallet is encrypted set that before using middleware. Ex:
 ```javascript
 bitcoin.setup(wallet);
-bitcoin.setWalletPassphrase(passphrase);
+bitcoin.walletPass("passwordorpassphrase");
 app.use('/bitcoin/api', bitcoin.api);
 ```
 
-### .setAccces(type, accesslist);
-
-The .setAccess method controls the access to the urls. By default all commands are accessible. The method takes two parameters: type (string) and accesslist (array). To restrict access there are two ways to do this:
-
-#### 'allow'
-
-The 'allow' type only exposes the methods given by an array of methods as the accesslist parameter.
-
-```javascript
-//Allow only the getblockchaininfo method
-bitcoin.setAccess('allow', ['getblockchaininfo']);
-```
-
-#### 'restrict'
-
-The 'restrict' type prevents methods from being accessed.
-
-```javascript
-bitcoin.setAccess('restrict', ['dumpprivkey', 'sendmany']);
-```
-
-### Access Profiles
-
-Bitcoin-RPC-Api has predefined access profiles to make it easy to set up.
-
-#### 'default-safe'
-
-It prevents 'dumpprivkey' and 'walletpassphrasechange' being accessed. This prevents potential theft. Also removes the 'stop' command to prevent someone from stopping the server.
-
-```javascript
-bitcoin.setAccess('default-safe');
-```
-
-#### 'read-only'
-
-This profile only exposes methods that show information. No methods that can send/alter the wallet are exposed.
-
-```javascript
-bitcoin.setAccess('read-only');
-```
 
 ## Projects
 
