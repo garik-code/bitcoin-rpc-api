@@ -2,8 +2,8 @@
 A modern full-featured Bitcoin Core REST and RPC Express middleware to execute administrative tasks, [multiwallet](https://bitcoincore.org/en/2017/09/01/release-0.15.0/#multiwallet) operations and queries about network and the blockchain using URL structure exposed for easy interfacing with a bitcoind Bitcoin wallet..
 
 ## Status
-[![NPM Package](https://img.shields.io/badge/npm-0.1.0-orange.svg)](https://www.npmjs.org/package/dibyanshu)
-[![Build Status](https://img.shields.io/badge/build-failed-red.svg)](https://github.com/dibyanshusinha/)
+[![NPM Package](https://img.shields.io/badge/npm-0.0.2-green.svg)](https://www.npmjs.org/package/dibyanshu)
+[![Build Status](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/dibyanshusinha/)
 
 ## Installation
 
@@ -17,21 +17,10 @@ npm install bitcoin-rpc-api --save
 ## Usage
 ### Client(...args)
 #### Params
-1. `[host=localhost]` _(string)_: The host to connect to.
 
 
 ### Examples
 #### Using Node.js
-The `network` will automatically determine the port to connect to, just like the `bitcoind` and `bitcoin-cli` commands.
-
-NB: The middleware is experimental at present. Certain JSON-RPC methods are not supported yet and/or experimental. These are methods with more complex parameters that do not fit easily into a query string:
-
-- addmultisigaddress
-- createmultisig
-- getaddednodeinfo
-- sendmany
-
-These methods will be added in the future. If there any other problems with the other methods, please report the bugs.
 
 ##### Example of a setup
 
@@ -51,7 +40,6 @@ var wallet = {
 };
 
 bitcoinapi.setWalletDetails(wallet);
-bitcoinapi.setAccess('default-safe'); //Access control
 app.use('/bitcoin', bitcoinapi.app); //Bind the middleware to any chosen url
 
 app.listen(3000);
@@ -184,9 +172,3 @@ If you use Bitcoin-RPC-Api in your projects submit a pull request to the readme 
 **Code released under [the MIT license](https://github.com/dibyanshusinha/bitcoin-rpc-api/blob/master/LICENSE).**
 
 Copyright (C) 2019 Dibyanshu
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
